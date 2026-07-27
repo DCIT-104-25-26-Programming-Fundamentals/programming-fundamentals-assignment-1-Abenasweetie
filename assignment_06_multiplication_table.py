@@ -52,6 +52,70 @@
 
 #
 # =============================================================================
-# YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
+
+# -----------------------------------------------------------------------------
+# PART A — Single Table
+# -----------------------------------------------------------------------------
+def print_single_table(num):
+    """
+    Prints the multiplication table for a given number from 1 to 12.
+    """
+    print(f"\nMultiplication Table for {num}:")
+    for i in range(1, 13):
+        # Uses formatting to keep columns aligned neatly
+        print(f"{num:2d}  x  {i:2d}  =  {num * i:3d}")
+
+
+# -----------------------------------------------------------------------------
+# PART B — Bonus: Tables from 1 to N
+# -----------------------------------------------------------------------------
+def print_range_tables(n):
+    """
+    Prints the full multiplication tables for every number from 1 to N.
+    Uses print_single_table() to print each individual table.
+    """
+    for current_num in range(1, n + 1):
+        print_single_table(current_num)
+
+        # Print a separator line between tables, except after the last one
+        if current_num < n:
+            print("-" * 27)
+
+
+# -----------------------------------------------------------------------------
+# MAIN PROGRAM
+# -----------------------------------------------------------------------------
+def main():
+    print("=" * 60)
+    print("           MULTIPLICATION TABLE GENERATOR")
+    print("=" * 60)
+
+    # --- TESTING PART A ---
+    print("\n>>> PART A: Single Multiplication Table <<<")
+    try:
+        user_num = int(input("Enter a number: "))
+        if user_num <= 0:
+            print("Error: Please enter a positive integer greater than 0.")
+            return
+        print_single_table(user_num)
+    except ValueError:
+        print("Error: Invalid input. Please enter a valid integer.")
+        return
+
+    # --- TESTING PART B ---
+    print("\n>>> PART B: Tables from 1 to N <<<")
+    try:
+        n_limit = int(input("Enter a number N: "))
+        if n_limit <= 0:
+            print("Error: Please enter a positive integer greater than 0.")
+            return
+
+        print_range_tables(n_limit)
+    except ValueError:
+        print("Error: Invalid input. Please enter a valid integer.")
+
+
+if __name__ == "__main__":
+    main()
 # =============================================================================
 
