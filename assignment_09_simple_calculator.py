@@ -65,6 +65,128 @@
 
 #
 # =============================================================================
-# YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
+# -----------------------------------------------------------------------------
+# ARITHMETIC OPERATION FUNCTIONS
+# -----------------------------------------------------------------------------
+def add(a, b):
+    """Returns the sum of two numbers."""
+    return a + b
+
+
+def subtract(a, b):
+    """Returns the difference of two numbers."""
+    return a - b
+
+
+def multiply(a, b):
+    """Returns the product of two numbers."""
+    return a * b
+
+
+def divide(a, b):
+    """
+    Returns the quotient of two numbers rounded to 2 decimal places.
+    Raises ZeroDivisionError if b is 0.
+    """
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")
+    return round(a / b, 2)
+
+
+def modulus(a, b):
+    """
+    Returns the remainder of division of two numbers.
+    Raises ZeroDivisionError if b is 0.
+    """
+    if b == 0:
+        raise ZeroDivisionError("Cannot calculate modulus by zero.")
+    return a % b
+
+
+def power(a, b):
+    """Returns 'a' raised to the power of 'b'."""
+    return a**b
+
+
+# -----------------------------------------------------------------------------
+# HELPER FUNCTIONS
+# -----------------------------------------------------------------------------
+def get_number_input(prompt):
+    """
+    Safely prompts the user for a numeric input (float or int).
+    Retries until a valid number is entered.
+    """
+    while True:
+        try:
+            val = float(input(prompt))
+            # Return as integer if it's a whole number (e.g., 10.0 -> 10)
+            return int(val) if val.is_integer() else val
+        except ValueError:
+            print("  -> Error: Invalid input. Please enter a valid number.")
+
+
+def display_menu():
+    """Prints the main calculator menu choices."""
+    print("\n" + "=" * 28)
+    print("     SIMPLE CALCULATOR")
+    print("=" * 28)
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Modulus")
+    print("6. Exponentiation")
+    print("7. Quit")
+
+
+# -----------------------------------------------------------------------------
+# MAIN PROGRAM LOOP
+# -----------------------------------------------------------------------------
+def main():
+    while True:
+        display_menu()
+        choice = input("Select an operation (1-7): ").strip()
+
+        if choice == "7":
+            print("\nGoodbye!")
+            break
+
+        if choice not in ("1", "2", "3", "4", "5", "6"):
+            print("Error: Invalid option. Please select a choice between 1 and 7.")
+            continue
+
+        # Get numeric inputs
+        num1 = get_number_input("Enter first number : ")
+        num2 = get_number_input("Enter second number: ")
+
+        # Perform calculation based on choice
+        try:
+            if choice == "1":
+                result = add(num1, num2)
+                symbol = "+"
+            elif choice == "2":
+                result = subtract(num1, num2)
+                symbol = "-"
+            elif choice == "3":
+                result = multiply(num1, num2)
+                symbol = "*"
+            elif choice == "4":
+                result = divide(num1, num2)
+                symbol = "/"
+            elif choice == "5":
+                result = modulus(num1, num2)
+                symbol = "%"
+            elif choice == "6":
+                result = power(num1, num2)
+                symbol = "**"
+
+            print(f"Result: {num1} {symbol} {num2} = {result}")
+
+        except ZeroDivisionError as e:
+            print(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    main()
 # =============================================================================
 
