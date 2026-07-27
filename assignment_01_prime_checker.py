@@ -32,6 +32,30 @@
 #
 
 # =============================================================================
-print "Hello";
+def is_prime(num):
+    """
+    Checks if a given number is prime.
+    Returns True if prime, False otherwise.
+    """
+    # Numbers less than 2 are not prime
+    if num < 2:
+        return False
+    
+    # Check for factors from 2 up to the square root of num
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False  # Found a divisor, so it's not prime
+            
+    return True
+
+
+# Main Execution Block
+if __name__ == "__main__":
+    user_input = int(input("Enter a number: "))
+    
+    if is_prime(user_input):
+        print(f"{user_input} is a prime number.")
+    else:
+        print(f"{user_input} is NOT a prime number.")
 # =============================================================================
 
