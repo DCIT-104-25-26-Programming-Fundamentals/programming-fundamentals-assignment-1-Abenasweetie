@@ -76,6 +76,99 @@
 
 #
 # =============================================================================
-# YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
+
+# -----------------------------------------------------------------------------
+# FEATURE FUNCTIONS
+# -----------------------------------------------------------------------------
+def add_task(tasks):
+    """
+    Prompts the user for a task description and adds it to the list.
+    """
+    task_desc = input("Enter task: ").strip()
+
+    if not task_desc:
+        print("Error: Task description cannot be empty.")
+        return
+
+    tasks.append(task_desc)
+    print(f'Task added: "{task_desc}"')
+
+
+def view_tasks(tasks):
+    """
+    Displays all tasks currently in the list with 1-based numbering.
+    """
+    if not tasks:
+        print("Your task list is currently empty!")
+        return
+
+    print("\nYour Tasks:")
+    for index, task in enumerate(tasks, start=1):
+        print(f"  {index}. {task}")
+
+
+def delete_task(tasks):
+    """
+    Displays the current list and removes a task chosen by the user.
+    """
+    if not tasks:
+        print("Your list is empty. There are no tasks to delete.")
+        return
+
+    # First, display current tasks so the user knows the numbers
+    view_tasks(tasks)
+
+    try:
+        task_num = int(input("\nEnter task number to delete: "))
+
+        # Check if the entered number corresponds to a valid 1-based index
+        if 1 <= task_num <= len(tasks):
+            removed = tasks.pop(task_num - 1)
+            print(f'Task "{removed}" has been removed.')
+        else:
+            print("Error: Invalid task number. Please select a number from the list.")
+    except ValueError:
+        print("Error: Invalid input. Please enter a valid number.")
+
+
+def display_menu():
+    """
+    Prints the interactive main menu options.
+    """
+    print("\n" + "=" * 28)
+    print("       TO-DO LIST MENU")
+    print("=" * 28)
+    print("1. Add task")
+    print("2. View tasks")
+    print("3. Delete task")
+    print("4. Quit")
+
+
+# -----------------------------------------------------------------------------
+# MAIN PROGRAM LOOP
+# -----------------------------------------------------------------------------
+def main():
+    # Store all tasks in a dynamic Python list
+    tasks = []
+
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-4): ").strip()
+
+        if choice == "1":
+            add_task(tasks)
+        elif choice == "2":
+            view_tasks(tasks)
+        elif choice == "3":
+            delete_task(tasks)
+        elif choice == "4":
+            print("\nGoodbye!")
+            break
+        else:
+            print("Error: Invalid option. Please enter a choice between 1 and 4.")
+
+
+if __name__ == "__main__":
+    main()
 # =============================================================================
 
